@@ -23,6 +23,7 @@ const downloadBtn = document.getElementById('download-btn');
 const resetBtn = document.getElementById('reset-btn');
 const formatSelector = document.getElementById('export-format');
 const bgColorSelector = document.getElementById('bg-color');
+const previewImg = document.getElementById('preview-img');
 
 // --- Initialization & Event Listeners ---
 
@@ -174,6 +175,20 @@ function renderCollage() {
         renderCircle();
     } else {
         renderMasonry();
+    }
+
+    updatePreviewImage();
+}
+
+function updatePreviewImage() {
+    try {
+        const mimeType = formatSelector.value;
+        const dataUrl = canvas.toDataURL(mimeType, 0.9);
+        previewImg.src = dataUrl;
+        previewImg.classList.remove('hidden');
+        canvas.classList.add('hidden'); // Hide canvas and show image for long-press
+    } catch (e) {
+        console.error('Preview update failed:', e);
     }
 }
 
