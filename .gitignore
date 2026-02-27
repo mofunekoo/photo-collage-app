@@ -1,0 +1,10 @@
+# OS generated files
+Thumbs.db
+Desktop.ini
+
+# IDE files
+.vscode/
+.idea/
+
+# Node dependencies (if any)
+node_modules/

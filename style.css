@@ -1,0 +1,337 @@
+:root {
+    --primary: #6366f1;
+    --primary-hover: #4f46e5;
+    --accent: #ec4899;
+    --bg-dark: #0f172a;
+    --card-bg: rgba(30, 41, 59, 0.7);
+    --text: #f8fafc;
+    --text-muted: #94a3b8;
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --glass-bg: rgba(255, 255, 255, 0.05);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Outfit', 'Zen Kaku Gothic New', sans-serif;
+    background-color: var(--bg-dark);
+    color: var(--text);
+    overflow-x: hidden;
+    min-height: 100vh;
+}
+
+/* Background Animations */
+.background-blobs {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    filter: blur(80px);
+    opacity: 0.6;
+}
+
+.blob {
+    position: absolute;
+    border-radius: 50%;
+}
+
+.blob1 {
+    width: 500px;
+    height: 500px;
+    background: var(--primary);
+    top: -100px;
+    right: -100px;
+    animation: move 20s infinite alternate;
+}
+
+.blob2 {
+    width: 400px;
+    height: 400px;
+    background: var(--accent);
+    bottom: -50px;
+    left: -50px;
+    animation: move 25s infinite alternate-reverse;
+}
+
+.blob3 {
+    width: 300px;
+    height: 300px;
+    background: #0ea5e9;
+    top: 40%;
+    left: 30%;
+    animation: move 18s infinite alternate;
+}
+
+@keyframes move {
+    from { transform: translate(0, 0) scale(1); }
+    to { transform: translate(100px, 50px) scale(1.1); }
+}
+
+/* Container */
+.app-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    align-items: center;
+}
+
+header {
+    text-align: center;
+    animation: fadeInDown 0.8s ease-out;
+}
+
+header h1 {
+    font-size: 4rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    background: linear-gradient(135deg, #fff 0%, #94a3b8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 0.5rem;
+}
+
+.subtitle {
+    font-size: 1.25rem;
+    color: var(--text-muted);
+}
+
+/* Sections */
+.upload-section {
+    width: 100%;
+    animation: fadeInUp 0.8s ease-out 0.2s both;
+}
+
+.upload-card {
+    background: var(--card-bg);
+    border: 2px dashed var(--glass-border);
+    border-radius: 2rem;
+    padding: 4rem 2rem;
+    text-align: center;
+    backdrop-filter: blur(20px);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.upload-card:hover, .upload-card.drag-over {
+    border-color: var(--primary);
+    background: rgba(30, 41, 59, 0.9);
+    transform: translateY(-5px);
+}
+
+.upload-icon {
+    width: 80px;
+    height: 80px;
+    background: var(--glass-bg);
+    border-radius: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+    color: var(--primary);
+}
+
+.upload-icon svg {
+    width: 40px;
+    height: 40px;
+}
+
+.upload-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.upload-card p {
+    color: var(--text-muted);
+}
+
+.limit-info {
+    font-size: 0.875rem;
+    margin-top: 0.5rem;
+    opacity: 0.7;
+}
+
+/* Editor Section */
+.editor-section {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    animation: fadeIn 0.5s ease-out;
+}
+
+.editor-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    background: var(--glass-bg);
+    padding: 1.5rem;
+    border-radius: 1.5rem;
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    align-items: center;
+    justify-content: center;
+}
+
+.control-group {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.control-group label {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+}
+
+select {
+    background: var(--bg-dark);
+    color: var(--text);
+    border: 1px solid var(--glass-border);
+    padding: 0.5rem 1rem;
+    border-radius: 0.75rem;
+    outline: none;
+    cursor: pointer;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 1rem;
+}
+
+/* Buttons */
+.btn {
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.75rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: none;
+    font-size: 1rem;
+}
+
+.btn-primary {
+    background: var(--primary);
+    color: white;
+    margin-top: 1.5rem;
+}
+
+.btn-primary:hover {
+    background: var(--primary-hover);
+    box-shadow: 0 10px 15px -3px rgba(79, 70, 229, 0.4);
+}
+
+.btn-outline {
+    background: transparent;
+    border: 1px solid var(--glass-border);
+    color: var(--text);
+}
+
+.btn-outline:hover {
+    background: var(--glass-bg);
+}
+
+.btn-gradient {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+    color: white;
+}
+
+.btn-gradient:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px -5px rgba(236, 72, 153, 0.5);
+}
+
+/* Preview */
+.preview-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 1.5rem;
+    padding: 1rem;
+    min-height: 400px;
+    align-items: center;
+}
+
+canvas {
+    max-width: 100%;
+    height: auto;
+    border-radius: 0.5rem;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+/* Gallery */
+.gallery-section {
+    width: 100%;
+    margin-top: 2rem;
+}
+
+.gallery-section h3 {
+    margin-bottom: 1.5rem;
+    font-size: 1.25rem;
+}
+
+.photo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 1rem;
+}
+
+.photo-item {
+    aspect-ratio: 1;
+    border-radius: 1rem;
+    overflow: hidden;
+    position: relative;
+    border: 1px solid var(--glass-border);
+}
+
+.photo-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.photo-item .remove-btn {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background: rgba(239, 68, 68, 0.8);
+    color: white;
+    border: none;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}

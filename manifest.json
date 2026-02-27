@@ -1,0 +1,17 @@
+{
+  "name": "Kora-ju - Photo Collage Maker",
+  "short_name": "Kora-ju",
+  "description": "お気に入りの写真を1枚の美しいコラージュに",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#0f172a",
+  "theme_color": "#6366f1",
+  "icons": [
+    {
+      "src": "https://cdn.pixabay.com/photo/2016/01/03/00/43/upload-1118929_1280.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

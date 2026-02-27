@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photo Collage Maker - Kora-ju</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&family=Zen+Kaku+Gothic+New:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#6366f1">
+    <link rel="apple-touch-icon" href="https://cdn.pixabay.com/photo/2016/01/03/00/43/upload-1118929_1280.png">
+</head>
+
+<body>
+    <div class="background-blobs">
+        <div class="blob blob1"></div>
+        <div class="blob blob2"></div>
+        <div class="blob blob3"></div>
+    </div>
+
+    <main class="app-container">
+        <header>
+            <h1>Kora-ju</h1>
+            <p class="subtitle">お気に入りの写真を1枚の美しいコラージュに</p>
+        </header>
+
+        <section class="upload-section" id="drop-area">
+            <div class="upload-card">
+                <div class="upload-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12" />
+                    </svg>
+                </div>
+                <h3>写真をアップロード</h3>
+                <p>ファイルをドラッグ＆ドロップするか、クリックして選択してください</p>
+                <p class="limit-info">（最大20枚まで）</p>
+                <input type="file" id="file-input" multiple accept="image/*" hidden>
+                <button class="btn btn-primary" id="browse-btn">ファイルを選択</button>
+            </div>
+        </section>
+
+        <section class="editor-section hidden" id="editor-section">
+            <div class="editor-controls">
+                <div class="control-group">
+                    <label>レイアウト</label>
+                    <select id="layout-type">
+                        <option value="masonry">ランダム・マニュアリー</option>
+                        <option value="grid" selected>グリッド</option>
+                        <option value="circle">サークル</option>
+                    </select>
+                </div>
+                <div class="control-group">
+                    <label>アスペクト比</label>
+                    <select id="aspect-ratio">
+                        <option value="1:1">正方形 (1:1)</option>
+                        <option value="4:3">4:3</option>
+                        <option value="16:9">16:9</option>
+                    </select>
+                </div>
+                <div class="control-group">
+                    <label>形式</label>
+                    <select id="export-format">
+                        <option value="image/png">PNG</option>
+                        <option value="image/jpeg" selected>JPG</option>
+                    </select>
+                </div>
+                <div class="control-group">
+                    <label>背景</label>
+                    <select id="bg-color">
+                        <option value="#000000">ブラック</option>
+                        <option value="#ffffff" selected>ホワイト</option>
+                    </select>
+                </div>
+                <div class="action-buttons">
+                    <button class="btn btn-outline" id="reset-btn">やり直し</button>
+                    <button class="btn btn-gradient" id="download-btn">ダウンロード</button>
+                </div>
+            </div>
+
+            <div class="preview-container">
+                <canvas id="collage-canvas"></canvas>
+            </div>
+        </section>
+
+        <section class="gallery-section hidden" id="gallery-section">
+            <h3>アップロードされた写真 (<span id="photo-count">0</span>/20)</h3>
+            <div class="photo-grid" id="photo-grid"></div>
+        </section>
+    </main>
+
+    <script src="main.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js')
+                    .then(reg => console.log('Service Worker registered'))
+                    .catch(err => console.log('Service Worker registration failed', err));
+            });
+        }
+    </script>
+</body>
+
+</html>
